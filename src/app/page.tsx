@@ -123,7 +123,7 @@ export default function Home() {
 
   return (
     <div className="flex bg-black text-zinc-100 overflow-hidden flex-col mx-auto h-screen w-full items-center text-center justify-center">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] overflow-hidden">
          <div>
           <Image src='/guitar.svg' height={30} width={303} alt="guitar" className="absolute  translate-y-4 -translate-x-40 rotate-12     
          md:-translate-y-36 md:translate-x-2 md:ml-8 md:rotate-45 opacity-15
