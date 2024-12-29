@@ -33,7 +33,7 @@ export default function Home() {
     const WIDTH = window.innerWidth;
     const HIEGHT = window.innerHeight;
 
-    const maxFreq = 7000
+    const maxFreq = 4000
     const maxVol = 0.03;
     const initialVol = 0.001;
     // set options for the oscillator
@@ -123,8 +123,14 @@ export default function Home() {
 
   return (
     <div className="flex bg-black text-zinc-100 overflow-hidden flex-col mx-auto h-screen w-full items-center text-center justify-center">
-      <div className=" absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)]"/>
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-800/20 " />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)]">
+         <div>
+          <Image src='/guitar.svg' height={30} width={303} alt="guitar" className="absolute  translate-y-4 -translate-x-40 rotate-12     
+         md:-translate-y-36 md:translate-x-2 md:ml-8 md:rotate-45 opacity-15
+         " />
+        </div>
+        </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-700/20 " />
       <div className="-translate-x-20 translate-y-16">
       <div className="">
           <div className="translate-x-4">
@@ -146,49 +152,97 @@ export default function Home() {
       <h5 className="text-medium pb-8 font-semibold">Introducing</h5>
       <h1 className="font-bold text-8xl pb-2">Fusions</h1>
       <p className="text-[.8rem] pb-8 font-semibold">A programming language for guitar using guitar sound</p>
-     
-      <div className="bg-purple-300/20 p-2 w-96 h-49 rounded-xl md:w-[800px] md:h-[200px] ">
-        <div>
-           <Image src='/guitar.svg' height={30} width={63} alt="guitar" className="absolute -z-0 translate-y-1 -translate-x-36 rotate-12 md:hidden" />
-          <Image src='/guitar.svg' height={30} width={33} alt="guitar" className="absolute -z-0 translate-y-4 -translate-x-36 rotate-12     
-         
-         md:-translate-y-20 md:translate-x-2 md:ml-8 md:rotate-45
-         " />
-        </div>
-        
-        <div className="translate-y-30 -rotate-180 md:hidden">
-           <Image src='/guitar.svg' height={30} width={63} alt="guitar" className="absolute -z-0 translate-y-1 -translate-x-36 rotate-12 " />
-         <Image src='/guitar.svg' height={30} width={33} alt="guitar" className="absolute -z-0 translate-y-1 -translate-x-36 rotate-12 " />
-        </div>
-        <div>
+      <div className="relative mt-4">
+        <div className="absolute -inset-4 bg-gradient-to-b from-purple-600 to-purple-900 rounded-xl blur-xl opacity-60 " />
+        <div className="relative px-7 py-8 bg-black/90 rounded-xl">
+           <div >
           <div className="flex ">
-            <div className="h-3 w-3 bg-red-500 rounded-full z-10"></div>
-            <div className="ml-2 h-3 w-3 bg-green-500 rounded-full z-10"></div>
-            <div className="ml-2 h-3 w-3 bg-yellow-500 rounded-2xl z-10"></div>
+            <div className="h-3 w-3 bg-red-500 rounded-full"></div>
+            <div className="ml-2 h-3 w-3 bg-green-500 rounded-full"></div>
+            <div className="ml-2 h-3 w-3 bg-yellow-500 rounded-2xl"></div>
            </div>
         </div>
 
-        <div className="text-left p-1 text-zinc-50/10 ">
-          
-          <ul className="md:mt-3">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div>
-              <div className="flex" >
-                <h1>{i}</h1>
-                <li key={i} className=" ml-2 border bg-purp-400/20 mt-3 h-0 w-full ">
-                   
-              </li>
-                </div>
-               
-              </div>
-                ))
-                
-            }
-
-          </ul>
+           <div className="relative w-96 h-49 rounded-xl md:w-[800px] md:h-[200px] p-8  ">
+       
+        
+        <div className="translate-y-30 -rotate-180 md:hidden">
+           <Image src='/guitar.svg' height={30} width={63} alt="guitar" className="absolute -z-0 translate-y-1 -translate-x-40 rotate-12 " />
+         <Image src='/guitar.svg' height={30} width={33} alt="guitar" className="absolute -z-0 translate-y-1 -translate-x-40 rotate-12 " />
         </div>
-      </div>
-      
+       
+
+        <pre className="text-left p-1 text-zinc-100 ">
+              <code className="text-zinc-400"> 
+                {`// This will play E note on fret 2`}
+              </code>
+              
+              <code>
+                <code>
+                  <code className="text-orange-300">
+                         {
+                    ` 
+ play `
+                    }
+                    
+                  </code>
+                  <code className="text-purple-400">
+                    {`E`}
+                  </code>
+                  <code className="text-yellow-200">
+                    {` 2`}
+                  </code>
+                 
+         </code>
+
+                <code className="text-zinc-400">
+                  {`
+// Play a chord (major)`}
+                </code>
+
+                    <code>
+                  <code className="text-orange-300">
+                         {
+                    ` 
+ play `
+                    }
+                    
+                  </code>
+                  <code className="text-purple-400">
+                    {`E#`}
+                  </code>
+                  <code className="text-yellow-200">
+                    {` 3`}
+                  </code>
+                </code>
+                <code>
+                <code className="text-zinc-400">
+                         {`
+// Play a chord (minor)`}
+                  </code>    
+                  <code className="text-orange-300">
+                         {
+                    ` 
+ play `
+                    }
+                    
+                  </code>
+                  <code className="text-purple-400">
+                    {`Ab`}
+                  </code>
+                  <code className="text-yellow-200">
+                    {` 4`}
+                  </code>
+                 
+         </code>
+       
+              </code>
+         
+        </pre>
+          </div>
+        </div>
+          </div>
+
     </div>
   );
 }
