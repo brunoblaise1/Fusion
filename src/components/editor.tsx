@@ -22,7 +22,9 @@ function Editor() {
         const keys = /[A-Z]./g
         const frets = /\d{1}/g
     
-       
+    
+        //TODO: cursor probelm 
+        //TODO: add actual guitar
 
 const newFret = text.replace(frets, '<code class="text-yellow-200">$&</code>');
 
