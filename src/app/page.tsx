@@ -1,15 +1,10 @@
 "use client"
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
 
-
-
-
-
 export default function Home() {
-    window.addEventListener("keydown", init)
-
   function init() {
      let rX;
     let rY;
@@ -122,7 +117,7 @@ export default function Home() {
 
 
   return (
-    <div className="flex bg-black text-zinc-100 overflow-hidden flex-col mx-auto h-screen w-full items-center text-center justify-center">
+    <div className="flex  text-zinc-100 overflow-hidden flex-col mx-auto h-screen w-full items-center text-center justify-center">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] overflow-hidden">
          <div>
           <Image src='/guitar.svg' height={30} width={303} alt="guitar" className="absolute  translate-y-4 -translate-x-40 rotate-12     
@@ -151,7 +146,11 @@ export default function Home() {
       </div>
       <h5 className="text-medium pb-8 font-semibold">Introducing</h5>
       <h1 className="font-bold text-8xl pb-2">Fusions</h1>
-      <p className="text-[.8rem] pb-8 font-semibold">A programming language for guitar using guitar sound</p>
+      <p className="text-[.8rem] pb-4 font-semibold">A programming language for guitar using guitar sound</p>
+      <div className="pb-8">
+        <Link href="/get" className="p-2  bg-gradient-to-b from-purple-600 to-purple-900  rounded-xl animate-spin"
+>Get coding</Link>      
+      </div>
       <div className="relative mt-4">
         <div className="absolute -inset-4 bg-gradient-to-b from-purple-600 to-purple-900 rounded-xl blur-xl opacity-60 " />
         <div className="relative px-7 py-8 bg-black/90 rounded-xl">
@@ -163,9 +162,7 @@ export default function Home() {
            </div>
         </div>
 
-           <div className="relative w-96 h-49 rounded-xl md:w-[800px] md:h-[200px] p-8  ">
-       
-        
+           <div className="relative w-96 h-49 rounded-xl md:w-[800px] md:h-[200px] p-8  "> 
         <div className="translate-y-30 -rotate-180 md:hidden">
            <Image src='/guitar.svg' height={30} width={63} alt="guitar" className="absolute -z-0 translate-y-1 -translate-x-40 rotate-12 " />
          <Image src='/guitar.svg' height={30} width={33} alt="guitar" className="absolute -z-0 translate-y-1 -translate-x-40 rotate-12 " />
