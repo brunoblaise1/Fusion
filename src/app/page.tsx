@@ -62,7 +62,7 @@ export default function Home() {
 
       gainNode.gain.value = (curY / HIEGHT) * maxVol;
 
-     // canvasDraw()
+      canvasDraw()
 
     }
 
@@ -118,6 +118,7 @@ export default function Home() {
 
   return (
     <div className="flex  text-zinc-100 overflow-hidden flex-col mx-auto h-screen w-full items-center text-center justify-center">
+      <canvas className="absolute inset-0"></canvas>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] overflow-hidden">
          <div>
           <Image src='/guitar.svg' height={30} width={303} alt="guitar" className="absolute  translate-y-4 -translate-x-40 rotate-12     
@@ -134,7 +135,6 @@ export default function Home() {
             <div className="ml-2 h-3 w-3 bg-yellow-200 rounded-2xl"></div>
            </div>
         </div>
-    
         <div className="-translate-y-8 rotate-180">
           <div className="">
             <div className="h-3 w-3 bg-red-200 rounded-full"></div>
@@ -142,14 +142,15 @@ export default function Home() {
             <div className="ml-2 h-3 w-3 bg-yellow-200 rounded-2xl"></div>
            </div>
         </div>
-    
       </div>
       <h5 className="text-medium pb-8 font-semibold">Introducing</h5>
       <h1 className="font-bold text-8xl pb-2">Fusions</h1>
-      <p className="text-[.8rem] pb-4 font-semibold">A programming language for guitar using guitar sound</p>
+      <p className="text-[.8rem] pb-4 font-semibold">A game for morse code and digital guitar pedal</p>
       <div className="pb-8">
         <Link href="/get" className="p-2  bg-gradient-to-b from-purple-600 to-purple-900  rounded-xl animate-spin"
->Get coding</Link>      
+        >Morse code game</Link>  
+  <Link href="/guitar" className="p-2 ml-4 bg-gradient-to-b from-orange-300 to-orange-400  rounded-xl animate-spin"
+>Digital Guitar</Link>        
       </div>
       <div className="relative mt-4">
         <div className="absolute -inset-4 bg-gradient-to-b from-purple-600 to-purple-900 rounded-xl blur-xl opacity-60 " />
