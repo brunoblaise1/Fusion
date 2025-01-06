@@ -1,0 +1,97 @@
+{
+	"information_for_contributors": [
+        "Hey hope you are well, this extension is not intend to be used I built during High seas and This was because I want syntax hightligthing for my programming Language called Fusion"
+      
+    ],
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Fusion",
+	 "comment": "Fusion Generator syntax highlighting for VSCode.",
+	"version": "0.0.1",
+	"fileTypes": [
+		"fu"
+	],
+	"patterns": [
+		{
+			"include": "#block-comments"
+		},
+		{
+			"include": "#comments"
+		},
+		
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.fusion",
+					"match": "(//).*$",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.comment.fusion"
+						}
+					}
+				},
+				{
+					"include": "source.js#comments"
+				}
+				
+				
+			]
+		},
+			"block-comments": {
+			"patterns": [
+				{
+					"comment": "empty block comments",
+					"name": "comment.block.fusion",
+					"match": "/\\*\\*/"
+				},
+				{
+					"comment": "block documentation comments",
+					"name": "comment.block.documentation.fusion",
+					"begin": "/\\*\\*",
+					"end": "\\*/",
+					"patterns": [
+						{
+							"include": "#block-comments"
+						}
+					]
+				},
+				{
+					"comment": "block comments",
+					"name": "comment.block.fusion",
+					"begin": "/\\*(?!\\*)",
+					"end": "\\*/",
+					"patterns": [
+						{
+							"include": "#block-comments"
+						}
+					]
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.fusion",
+				"match": "\\b((p|P)lay|[A-Z].|strum)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.fusion",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.fusion",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.fu"
+}

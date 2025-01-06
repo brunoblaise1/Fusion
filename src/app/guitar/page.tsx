@@ -10,10 +10,13 @@ function page() {
   const [code, setCode] = useState(`
 // avoid any keyword in comments   
  play E2
-// sound a chord (major) 
+// sound C5 in 6n 
  play C5
-// sound a chord (minor) 
- play A4`)
+// sound A4 in 6n
+ play A4
+ play B2
+ play F5
+ `)
   //TODO: play infinite
   
   const runCode = () => {  
@@ -25,8 +28,6 @@ const now = Tone.now();
 
     toast(`Key being payed ${capitalLetters[i]}`)
     }
-    
-   
   }
   const [range, setRange] = useState<number>(50)
   const audioCtx = new AudioContext()

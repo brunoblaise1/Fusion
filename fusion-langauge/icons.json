@@ -1,0 +1,12 @@
+{
+  "iconDefinitions": {
+  
+    "_fu": {
+      "iconPath": "images/fusion.svg"
+    }
+  },
+
+  "fileExtensions": {
+    "fu": "_fu"
+  }
+}
