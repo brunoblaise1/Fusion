@@ -30,12 +30,12 @@ const now = Tone.now();
     }
   }
   const [range, setRange] = useState<number>(50)
-    const AudioContext = window.AudioContext || window.AudioContext;
-    const audioCtx = new AudioContext()
+
   function stereorize() {
     let source;
     let stream;
-
+    const AudioContext = window.AudioContext || window.AudioContext;
+    const audioCtx = new AudioContext()
     let panNode = new StereoPannerNode(audioCtx)
     const constaraints = { audio: true }
     navigator.mediaDevices.getUserMedia(constaraints)

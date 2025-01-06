@@ -112,6 +112,8 @@ TODO: working on this
 
 ## How to syntax highlight in Vscode fusion
 
+![fusion image](https://cloud-fq7ogxaub-hack-club-bot.vercel.app/0arc_06_01_2025_11_55_47_am.png)
+
 Yep we have syntax highlighting in visual studio code and also we have a file icon this so amazing
 
 ## How to install
