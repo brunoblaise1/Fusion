@@ -34,21 +34,21 @@ function Multi() {
         return trackSource
     }
 
-    const click = () => {
-         if (audioCtx != null) {
-          return;
-        }
-        audioCtx = new AudioContext()
+//     const click = () => {
+//          if (audioCtx != null) {
+//           return;
+//         }
+//         audioCtx = new AudioContext()
 
-    }
-    const trackEls = Array.from(document.getElementsByClassName('li'));
+//     }
+//     const trackEls = Array.from(document.getElementsByClassName('li'));
     
-trackEls.forEach(element => {
-    if (audioCtx.state === "suspended") {
-        audioCtx.resume();
-    }
+// trackEls.forEach(element => {
+//     if (audioCtx.state === "suspended") {
+//         audioCtx.resume();
+//     }
     
-});
+// });
 
   return (
     <div>
