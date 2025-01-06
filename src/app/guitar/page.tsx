@@ -17,7 +17,7 @@ function page() {
  play B2
  play F5
  `)
-  //TODO: play infinite
+
   
   const runCode = () => {  
   const synth = new Tone.PolySynth(Tone.Synth).toDestination();
@@ -66,14 +66,8 @@ const now = Tone.now();
 
   const applySyntaxHighlighting = (text: string) => {
     return text.replace(commetReg, '<code class="text-zinc-400">$&</code>').replace(keyword, '<code class="text-orange-300">$&</code>')
-      .replace(keys, '<code class="text-purple-400">$&</code>');
-    
-    
-    
+      .replace(keys, '<code class="text-purple-400">$&</code>');   
   };
-
-  
-
   const handleInput = () => {
     const editor = editorRef.current;
   

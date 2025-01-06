@@ -8,25 +8,19 @@ import { useEffect } from "react";
 export default function Home() {
 
   function init() {
-     let rX;
+    let rX;
     let rY;
     let rC;
-   
     //creating web audio api context
     const AudioContext = window.AudioContext || window.AudioContext;
     const audioCtx = new AudioContext();
-
     //creating oscillator and gain noe
-
     const oscillator = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain()
-
     //connecting the oscillator to gain node to speakers
     oscillator.connect(gainNode)
     gainNode.connect(audioCtx.destination)
-
     //create inital thermin frequency and volume values
-
     const WIDTH = window.innerWidth;
     const HIEGHT = window.innerHeight;
 
@@ -67,11 +61,9 @@ export default function Home() {
       canvasDraw()
 
     }
-
     function random(num1: number, num2: number) {
       return num1 + (Math.floor(Math.random()* (num2 - num1)) + 1)
     }
-
     const canvas = document.querySelector("canvas")
     const canvasCtx = canvas?.getContext("2d")
     if (canvas) {
@@ -155,8 +147,7 @@ export default function Home() {
 
  <Link href="/guitar" className="p-2 ml-4 bg-gradient-to-b from-green-300 to-green-400  rounded-xl "
 >Start coding</Link>   
-        </div>
-             
+        </div>        
       </div>
       <div className="relative mt-4">
         <div className="absolute -inset-4 bg-gradient-to-b from-purple-600 to-purple-900 rounded-xl blur-xl opacity-60 " />
@@ -173,8 +164,6 @@ export default function Home() {
            <Image src='/guitar.svg' height={30} width={63} alt="guitar" className="absolute -z-0 translate-y-1 -translate-x-40 rotate-12 " />
          <Image src='/guitar.svg' height={30} width={33} alt="guitar" className="absolute -z-0 translate-y-1 -translate-x-40 rotate-12 " />
         </div>
-
-
             <pre className="text-left p-1 text-zinc-100 ">
               <code>
                   <code className="text-zinc-400"> 
@@ -242,24 +231,14 @@ export default function Home() {
                   </code>
                   <code className="text-yellow-200">
                     {` 4`}
-                  </code>
-                 
+                  </code>        
          </code>
-       
               </code>
-              </code>
-
-
-              
-
-
-            
-         
+              </code>      
         </pre>
           </div>
         </div>
           </div>
-
     </div>
   );
 }

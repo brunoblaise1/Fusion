@@ -161,3 +161,8 @@ bun run dev
 
 
 
+## Credits
+
+To make the programming language which I am still working on I followed a tutorial by Tyler.
+
+Check out his youtube channel [tyler](https://www.youtube.com/watch?v=8VB5TY1sIRo&list=PL_2VhOvlMk4UHGqYCLWc6GO8FaPl8fQTh)
