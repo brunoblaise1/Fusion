@@ -94,7 +94,6 @@ fusion [nameofyourpoject.f]
 
 ## How to use Fusion
 
-
 TODO: working on this
 ```fu
 // Do not use this syntax in digital 

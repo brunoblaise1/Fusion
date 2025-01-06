@@ -30,7 +30,8 @@ const now = Tone.now();
     }
   }
   const [range, setRange] = useState<number>(50)
-  const audioCtx = new AudioContext()
+    const AudioContext = window.AudioContext || window.AudioContext;
+    const audioCtx = new AudioContext()
   function stereorize() {
     let source;
     let stream;
