@@ -95,6 +95,22 @@ fusion [nameofyourpoject.f]
 ## How to use Fusion
 
 
+TODO: working on this
+```fu
+// Do not use this syntax in digital 
+//guitar it'sn't different, look readme
+// This will play E note on fret 2 
+ play E 2
+// Play a chord (major) 
+ play E# 3
+// Play a chord (minor) 
+ play Ab 4
+
+ // For printing to the console
+
+ strum Ab
+```
+
 ## How to syntax highlight in Vscode fusion
 
 Yep we have syntax highlighting in visual studio code and also we have a file icon this so amazing
@@ -103,11 +119,13 @@ Yep we have syntax highlighting in visual studio code and also we have a file ic
 
 - If you what to test it out check this link:
 
-[High seas](marketplace.visualstudio.com/manage/publishers/brunoblaise/extensions/high-seas-dark-theme/hub)
+[Fusion](https://marketplace.visualstudio.com/items?itemName=brunoblaise.fusion-langauge&ssr=false#review-details)
 
 - Look close in this repo you can find a file with `.vsix` which is the extension for compiled(I may say) download it and open it using vscode and then right click on it and the click `install`. 
 
+Here you go now everything coming together
 
+![Fusion](https://cloud-idh0p929m-hack-club-bot.vercel.app/0basic.fu_-_fusion_-_visual_studio_code_06_01_2025_11_44_09_am.png)
 
 
 # Stack used
@@ -123,6 +141,8 @@ Yep we have syntax highlighting in visual studio code and also we have a file ic
 You need to refresh the page when you are navigated to other pages to avoid the home page sound that use cursor for it pitch and loudness so do it to stop.
 
 You can't write syntax in comments in Digital Guitar language as mentioned above.
+
+Cursor in the digital programming keeps jumping around
 
 # How to install Fusion on local device:
 

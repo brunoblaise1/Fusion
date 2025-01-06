@@ -1,7 +1,12 @@
-// comments
+// Do not use this syntax in digital 
+//guitar it'sn't different, look readme
+// This will play E note on fret 2 
+ play E 2
+// Play a chord (major) 
+ play E# 3
+// Play a chord (minor) 
+ play Ab 4
 
-play A# 4
+ // For printing to the console
 
-Play A# 4
-
-strum A#
+ strum Ab
