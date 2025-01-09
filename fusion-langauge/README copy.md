@@ -74,40 +74,158 @@ Fusion programming Language is highly influence by how guitar keys are strumed a
 - Declaring a variable
 - Basic math 
 - Function declaration
+- object and many other good stuff
 
 
 ## How to install it
 
-Let's say you need fusion on local system how do you install it.
+Let's say you need fusion on local system how do you install it. or use [npm package](https://www.npmjs.com/package/fusion-lang)
 
 ```bash
 
-npm i -g fusion
+npm i -g fusion-lang
 
 ```
 
 now running fusion program 
 
 ```bash
-fusion [nameofyourpoject.f]
+fusion-lang [nameofyourpoject.fu]
+```
+### For example: fusion-lang basic.fu 
+
+or use fussion repl:
+
+```bash
+fusion-lang 
 ```
 
 ## How to use Fusion
 
+```fu
+// beginning of the program
+//TODO: make arrays, add more native functions, ifandelse
+
+play beg = "Hello World!" // not constant
+
+strum(beg)
+
+press gone = "Bye " // constant
+
+strum(gone)
+
+play n = 2 // variable
+play isTrue = true // boolean
+
+strum(n)
+
+press obj = {  // object in fussion
+    x: 3,
+    y: "Hello",
+    complex: {
+        go: true
+    },
+    n
+}
+
+strum(obj.complex.go)
+
+fret myname(str){ // function in fussion
+    strum(str)
+}
+play length = string("Blaise") // native function for length
+play time = now()
+myname("Blaise") // calling the function
+
+strum(time) // printing out to the console 
+```
+
+## Supported Syntax
+
+### String
+```
+play name = "myname" // normal variable
+press nme = "secom" // constant
+// nme = name // will result into any errorr
+name = nme
+```
+- Number
+- Boolean
+
+### Objects
+
+```
+press obj = {  // object in fussion
+    x: 3,
+    y: "Hello",
+    complex: {
+        go: true
+    },
+    name // yep this is the varaible we declared short hand is supported
+}
+// or using play
+
+play person = {
+    age: 40,
+    name: "Willson",
+    country: {
+        city: "NYC",
+        state: "California"
+    }
+
+}
+```
+### functions
+
+```
+fret myname(str){ // function in fussion
+    strum(str)
+    
+}
+
+fret add(x, y){ // function in fussion
+    play re = x + y
+
+    return re
+}
+
+press result = add(4, 5)
+
+strum(result) // for printing
+```
+### native functions
+
+### Length
+```
+play length = string("Blaise") //length 
+```
+
+###
+```
+play time = now()
+```
 
 ## How to syntax highlight in Vscode fusion
 
-Yep we have syntax highlighting in visual studio code and also we have a file icon this so amazing
+![fusion image](https://cloud-fq7ogxaub-hack-club-bot.vercel.app/0arc_06_01_2025_11_55_47_am.png)
+
+Yep we have syntax highlighting in visual studio code and also we have a file icon this so amazing.
+
+![fusion image](https://cloud-jwuw2newe-hack-club-bot.vercel.app/0readme.md_-_fusion_-_visual_studio_code_10_01_2025_12_49_24_am.png)
+
+![fusion image](https://cloud-jwuw2newe-hack-club-bot.vercel.app/1readme.md_-_fusion_-_visual_studio_code_10_01_2025_12_49_46_am.png)
 
 ## How to install
 
 - If you what to test it out check this link:
 
-[High seas](marketplace.visualstudio.com/manage/publishers/brunoblaise/extensions/high-seas-dark-theme/hub)
+[Fusion](https://marketplace.visualstudio.com/items?itemName=brunoblaise.fusion-langauge&ssr=false#review-details)
 
 - Look close in this repo you can find a file with `.vsix` which is the extension for compiled(I may say) download it and open it using vscode and then right click on it and the click `install`. 
 
+Here you go now everything coming together
 
+![Fusion](https://cloud-bp971p9at-hack-club-bot.vercel.app/1____basic.fu_-_fusion_-_visual_studio_code_10_01_2025_12_37_04_am.png)
 
 
 # Stack used
@@ -124,6 +242,8 @@ You need to refresh the page when you are navigated to other pages to avoid the 
 
 You can't write syntax in comments in Digital Guitar language as mentioned above.
 
+Cursor in the digital programming keeps jumping around
+
 # How to install Fusion on local device:
 
 Use nodejs and clone the project here are the steps you need to folllow:
@@ -137,6 +257,22 @@ bun install
 bun run dev
 ```
 
+## Credits
+
+To make the programming language which I am still working on I followed a tutorial by Tyler.
+
+Check out his youtube channel [tyler](https://www.youtube.com/watch?v=8VB5TY1sIRo&list=PL_2VhOvlMk4UHGqYCLWc6GO8FaPl8fQTh)
+
+I used some AI here and there mostly for debugginhg 
+
+and also File icon I got inspiration from Emoji file icon
 
 
+# TODO:
 
+- Add array to fusion lang
+- Add for, ifelse and many more
+- Improve the syntax hightlighting
+- Add more features to digital guitar
+- solve all kown issues 
+- Add morse code game using sound

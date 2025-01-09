@@ -74,47 +74,146 @@ Fusion programming Language is highly influence by how guitar keys are strumed a
 - Declaring a variable
 - Basic math 
 - Function declaration
+- object and many other good stuff
 
 
 ## How to install it
 
-Let's say you need fusion on local system how do you install it.
+Let's say you need fusion on local system how do you install it. or use [npm package](https://www.npmjs.com/package/fusion-lang)
 
 ```bash
 
-npm i -g fusion
+npm i -g fusion-lang
 
 ```
 
 now running fusion program 
 
 ```bash
-fusion [nameofyourpoject.f]
+fusion-lang [nameofyourpoject.fu]
+```
+### For example: fusion-lang basic.fu 
+
+or use fussion repl:
+
+```bash
+fusion-lang 
 ```
 
 ## How to use Fusion
 
-TODO: working on this
 ```fu
-// Do not use this syntax in digital 
-//guitar it'sn't different, look readme
-// This will play E note on fret 2 
- play E 2
-// Play a chord (major) 
- play E# 3
-// Play a chord (minor) 
- play Ab 4
+// beginning of the program
+//TODO: make arrays, add more native functions, ifandelse
 
- // For printing to the console
+play beg = "Hello World!" // not constant
 
- strum Ab
+strum(beg)
+
+press gone = "Bye " // constant
+
+strum(gone)
+
+play n = 2 // variable
+play isTrue = true // boolean
+
+strum(n)
+
+press obj = {  // object in fussion
+    x: 3,
+    y: "Hello",
+    complex: {
+        go: true
+    },
+    n
+}
+
+strum(obj.complex.go)
+
+fret myname(str){ // function in fussion
+    strum(str)
+}
+play length = string("Blaise") // native function for length
+play time = now()
+myname("Blaise") // calling the function
+
+strum(time) // printing out to the console 
+```
+
+## Supported Syntax
+
+### String
+```
+play name = "myname" // normal variable
+press nme = "secom" // constant
+// nme = name // will result into any errorr
+name = nme
+```
+- Number
+- Boolean
+
+### Objects
+
+```
+press obj = {  // object in fussion
+    x: 3,
+    y: "Hello",
+    complex: {
+        go: true
+    },
+    name // yep this is the varaible we declared short hand is supported
+}
+// or using play
+
+play person = {
+    age: 40,
+    name: "Willson",
+    country: {
+        city: "NYC",
+        state: "California"
+    }
+
+}
+```
+### functions
+
+```
+fret myname(str){ // function in fussion
+    strum(str)
+    
+}
+
+fret add(x, y){ // function in fussion
+    play re = x + y
+
+    return re
+}
+
+press result = add(4, 5)
+
+strum(result) // for printing
+```
+### native functions
+
+### Length
+```
+play length = string("Blaise") //length 
+```
+
+###
+```
+play time = now()
 ```
 
 ## How to syntax highlight in Vscode fusion
 
 ![fusion image](https://cloud-fq7ogxaub-hack-club-bot.vercel.app/0arc_06_01_2025_11_55_47_am.png)
 
-Yep we have syntax highlighting in visual studio code and also we have a file icon this so amazing
+Yep we have syntax highlighting in visual studio code and also we have a file icon this so amazing.
+
+![fusion image](https://cloud-jwuw2newe-hack-club-bot.vercel.app/0readme.md_-_fusion_-_visual_studio_code_10_01_2025_12_49_24_am.png)
+
+![fusion image](https://cloud-jwuw2newe-hack-club-bot.vercel.app/1readme.md_-_fusion_-_visual_studio_code_10_01_2025_12_49_46_am.png)
 
 ## How to install
 
@@ -126,7 +225,7 @@ Yep we have syntax highlighting in visual studio code and also we have a file ic
 
 Here you go now everything coming together
 
-![Fusion](https://cloud-idh0p929m-hack-club-bot.vercel.app/0basic.fu_-_fusion_-_visual_studio_code_06_01_2025_11_44_09_am.png)
+![Fusion](https://cloud-bp971p9at-hack-club-bot.vercel.app/1____basic.fu_-_fusion_-_visual_studio_code_10_01_2025_12_37_04_am.png)
 
 
 # Stack used
@@ -158,11 +257,22 @@ bun install
 bun run dev
 ```
 
-
-
-
 ## Credits
 
 To make the programming language which I am still working on I followed a tutorial by Tyler.
 
 Check out his youtube channel [tyler](https://www.youtube.com/watch?v=8VB5TY1sIRo&list=PL_2VhOvlMk4UHGqYCLWc6GO8FaPl8fQTh)
+
+I used some AI here and there mostly for debugginhg 
+
+and also File icon I got inspiration from Emoji file icon
+
+
+# TODO:
+
+- Add array to fusion lang
+- Add for, ifelse and many more
+- Improve the syntax hightlighting
+- Add more features to digital guitar
+- solve all kown issues 
+- Add morse code game using sound
