@@ -3,7 +3,7 @@
   "displayName": "Fusion langauge",
   "description": "Fusion programming langauge ",
   "publisher": "brunoblaise",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.96.0"
   },
