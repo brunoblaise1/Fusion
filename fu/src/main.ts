@@ -1,5 +1,5 @@
-
-const prompt = require("prompt-sync")({ sigint: true });
+#!/usr/bin/env node
+//const prompt = require("prompt-sync")({ sigint: true });
  import { readFileSync } from 'fs';
 enum TokenType{
       String,
@@ -89,11 +89,10 @@ function tokenize(sourceCode: string): Token[] {
         }
         src.shift();
       
-        // Remove the newline character
         continue;
       } else if (char == '"') {
              let str = "";
-            src.shift(); // Remove the opening quote
+            src.shift(); 
             let escaped = false;
          while (src.length > 0 && src[0] !== '\n') {
            const key = src.shift();
@@ -169,29 +168,25 @@ function tokenize(sourceCode: string): Token[] {
           num += src.shift();
         }
 
-        // append new numeric token.
         tokens.push(token(num, TokenType.Number));
        } 
          
-         // Handle Identifier & Keyword Tokens.
       else if (isalpha(char)) {
         let ident = "";
         while (src.length > 0 && isalpha(src[0])) {
           ident += src.shift();
         }
 
-        // CHECK FOR RESERVED KEYWORDS
         const reserved = KEYWORDS[ident];
-        // If value is not undefined then the identifier is
-        // reconized keyword
+   
         if (typeof reserved == "number") {
           tokens.push(token(ident, reserved));
         } else {
-          // Unreconized name must mean user defined symbol.
+    
           tokens.push(token(ident, TokenType.Identifier));
         } 
       }  else if (isskippable(char)) {
-        // Skip uneeded chars.
+ 
         src.shift();
       }  else {
         console.error(
@@ -272,20 +267,20 @@ interface FunctionDeclaration extends Stmt {
 	name: string;
 	body: Stmt[];
 }
-export interface IfStatement extends Stmt {
+ interface IfStatement extends Stmt {
   kind: "IfStatement";
   test: Expr;
   body: Stmt[];
   alternate?: Stmt[];
 }
 
-export interface TryCatchStatement extends Stmt {
+ interface TryCatchStatement extends Stmt {
   kind: "TryCatchStatement";
   body: Stmt[];
   alternate: Stmt[];
 }
 
-export interface ForStatement extends Stmt {
+ interface ForStatement extends Stmt {
   kind: "ForStatement";
   init: VarDeclaration;
   test: Expr;
@@ -293,12 +288,12 @@ export interface ForStatement extends Stmt {
   body: Stmt[];
 }
 
-export interface StringLiteral extends Expr {
+ interface StringLiteral extends Expr {
   kind: "StringLiteral";
   value: string;
 }
 
-export interface ArrayLiteral extends Expr {
+ interface ArrayLiteral extends Expr {
   kind: "ArrayLiteral";
   values: Array<Expr>;
 }
@@ -343,11 +338,6 @@ interface BinaryExpr extends Expr {
 }
 
 
-// AST
-
-
-
-// parser
 
 
 
@@ -355,32 +345,21 @@ interface BinaryExpr extends Expr {
  class Parser {
   private tokens: Token[] = [];
 
-  /*
-   * Determines if the parsing is complete and the END OF FILE Is reached.
-   */
+ 
   private not_eof(): boolean {
     return this.tokens[0].type != TokenType.EOF;
   }
 
-  /**
-   * Returns the currently available token
-   */
   private at() {
     return this.tokens[0] as Token;
   }
 
-  /**
-   * Returns the previous token and then advances the tokens array to the next value.
-   */
   private eat() {
     const prev = this.tokens.shift() as Token;
     return prev;
   }
 
-  /**
-   * Returns the previous token and then advances the tokens array to the next value.
-   *  Also checks the type of expected token and throws if the values dnot match.
-   */
+
   private expect(type: TokenType, err: any) {
     const prev = this.tokens.shift() as Token;
     if (!prev || prev.type != type) {
@@ -398,7 +377,7 @@ interface BinaryExpr extends Expr {
       body: [],
     };
 
-    // Parse until end of file
+
     while (this.not_eof()) {
       program.body.push(this.parse_stmt());
     }
@@ -406,9 +385,9 @@ interface BinaryExpr extends Expr {
     return program;
   }
 
-  // Handle complex statement types
+  
   private parse_stmt(): Stmt {
-    // skip to parse_expr
+
     switch (this.at().type) {
       case TokenType.Play:
       case TokenType.Press:
@@ -420,7 +399,7 @@ interface BinaryExpr extends Expr {
     }
    }
    	parse_fr_declaration(): Stmt {
-		this.eat(); // eat fn keyword
+		this.eat();
 		const name = this.expect(
 			TokenType.Identifier,
 			"Expected function name following fn keyword"
@@ -464,9 +443,6 @@ interface BinaryExpr extends Expr {
 
 		return fr;
 	}
-
-  // LET IDENT;
-  // ( LET | CONST ) IDENT = EXPR;
   parse_var_declaration(): Stmt {
     const isConstant = this.eat().type == TokenType.Press;
     const identifier = this.expect(
@@ -496,18 +472,17 @@ interface BinaryExpr extends Expr {
     return declaration;
   }
 
-  // Handle expressions
- 
+
     
     private parse_expr(): Expr {
     return this.parse_assignment_expr();
   }
 
   parse_assignment_expr(): Expr {
-     const left = this.parse_object_expr();// switch this out with objectExpr
+     const left = this.parse_object_expr();
 
     if (this.at().type == TokenType.Equals) {
-      this.eat(); // advance past equals
+      this.eat(); 
       const value = this.parse_assignment_expr();
       return { value, assigne: left, kind: "AssignmentExpr" } as AssignmentExpr;
     }
@@ -516,30 +491,29 @@ interface BinaryExpr extends Expr {
    }
    
      private parse_object_expr(): Expr {
-    // { Prop[] }
+
     if (this.at().type !== TokenType.OpenBrace) {
       return this.parse_additive_expr();
     }
 
-    this.eat(); // advance past open brace.
+    this.eat(); 
     const properties = new Array<Property>();
 
     while (this.not_eof() && this.at().type != TokenType.CloseBrace) {
       const key =
         this.expect(TokenType.Identifier, "Object literal key exprected").value;
 
-      // Allows shorthand key: pair -> { key, }
+   
       if (this.at().type == TokenType.Comma) {
-        this.eat(); // advance past comma
+        this.eat(); 
         properties.push({ key, kind: "Property" } as Property);
         continue;
-      } // Allows shorthand key: pair -> { key }
+      } 
       else if (this.at().type == TokenType.CloseBrace) {
         properties.push({ key, kind: "Property" });
         continue;
       }
 
-      // { key: val }
       this.expect(
         TokenType.Colon,
         "Missing colon following identifier in ObjectExpr",
@@ -558,7 +532,7 @@ interface BinaryExpr extends Expr {
     this.expect(TokenType.CloseBrace, "Object literal missing closing brace.");
     return { kind: "ObjectLiteral", properties } as ObjectLiteral;
   }
-  // Handle Addition & Subtraction Operations
+
   private parse_additive_expr(): Expr {
     let left = this.parse_multiplicitave_expr();
 
@@ -576,7 +550,7 @@ interface BinaryExpr extends Expr {
     return left;
   }
 
-  // Handle Multiplication, Division & Modulo Operations
+
   private parse_multiplicitave_expr(): Expr {
    let left = this.parse_call_member_expr();
 
@@ -611,7 +585,7 @@ interface BinaryExpr extends Expr {
             args: this.parse_args(),
         } as CallExpr;
 
-        // allow chaining: foo.x()()
+    
         if (this.at().type == TokenType.OpenParen) {
             call_expr = this.parse_call_expr(call_expr);
         }
@@ -630,7 +604,7 @@ interface BinaryExpr extends Expr {
         return args;
     }
 
-    // foo(x = 5, v = "Bar")
+   
     private parse_args_list(): Expr[] {
         const args = [this.parse_expr()];
 
@@ -649,16 +623,15 @@ interface BinaryExpr extends Expr {
             let property: Expr;
             let computed: boolean;
 
-            // non-computed values (obj.expr)
             if (operator.type == TokenType.Dot) {
                 computed = false;
-                // get identifier
+            
                 property = this.parse_primary_expr();
 
                 if (property.kind !== "Identifier") {
                     throw "Dot operator (\".\") is illegal without right-hand-side (<-) being an Identifier."
                 }
-            } // computed values (obj[computedVal])
+            } 
             else {
                 computed = true;
                 property = this.parse_expr();
@@ -678,16 +651,7 @@ interface BinaryExpr extends Expr {
     }
 
 
-  // Orders Of Prescidence
-  // Assignment
-  // Object
-  // AdditiveExpr
-  // MultiplicitaveExpr
-  // Call
-  // Member
-  // PrimaryExpr
 
-  // Parse Literal Values & Grouping Expressions
     private parse_primary_expr(): Expr {
         const tk = this.at().type;
 
@@ -707,10 +671,10 @@ interface BinaryExpr extends Expr {
             case TokenType.Fret:
                 return this.parse_fr_declaration();
             case TokenType.OpenParen: {
-                this.eat(); // eat the opening paren
+                this.eat(); 
                 const value = this.parse_expr();
 
-                this.expect(TokenType.CloseParen, `Unexpected token (${JSON.stringify(this.at().toString())}) found while parsing arguments.`); // closing paren
+                this.expect(TokenType.CloseParen, `Unexpected token (${JSON.stringify(this.at().toString())}) found while parsing arguments.`); 
 
                 return value;
             }
@@ -721,8 +685,6 @@ interface BinaryExpr extends Expr {
     }
 }
 
-
-// parser
 
 
 
@@ -746,12 +708,12 @@ interface BinaryExpr extends Expr {
   type: "object";
   properties: Map<string, RuntimeVal>;
 }
-export interface ArrayVal extends RuntimeVal {
+ interface ArrayVal extends RuntimeVal {
     type: "array";
     values: RuntimeVal[];
 }
 
-export interface StringVal extends RuntimeVal {
+ interface StringVal extends RuntimeVal {
     type: "string";
     value: string;
 }
@@ -778,15 +740,15 @@ export interface StringVal extends RuntimeVal {
 	return { type: "native-fn", call } as NativeFnValue;
 }
 
-export function MK_STRING(val: string): StringVal {
+ function MK_STRING(val: string): StringVal {
     return { type: "string", value: val } as StringVal;
 }
 
-export function MK_OBJECT(obj: Map<string, RuntimeVal>): ObjectVal {
+ function MK_OBJECT(obj: Map<string, RuntimeVal>): ObjectVal {
     return { type: "object", properties: obj } as ObjectVal;
 }
 
-export function MK_ARRAY(arr: RuntimeVal[]): ArrayVal {
+ function MK_ARRAY(arr: RuntimeVal[]): ArrayVal {
     return { type: "array", values: arr } as ArrayVal;
 }
 /**
@@ -801,7 +763,7 @@ export function MK_ARRAY(arr: RuntimeVal[]): ArrayVal {
   return { type: "number", value: n } as NumberVal;
 }
 
-export interface FunctionValue extends RuntimeVal {
+ interface FunctionValue extends RuntimeVal {
 	type: "function";
 	name: string;
 	parameters: string[];
@@ -833,7 +795,6 @@ function eval_numeric_binary_expr(
   } else if (operator == "*") {
     result = lhs.value * rhs.value;
   } else if (operator == "/") {
-    // TODO: Division by zero checks
     result = lhs.value / rhs.value;
   } else {
     result = lhs.value % rhs.value;
@@ -842,14 +803,11 @@ function eval_numeric_binary_expr(
   return { value: result, type: "number" };
 }
 
-/**
- * Evaulates expressions following the binary operation type.
- */
+
 function eval_binary_expr(binop: BinaryExpr, env: Environment): RuntimeVal {
   const lhs = evaluate(binop.left, env);
   const rhs = evaluate(binop.right, env);
 
-  // Only currently support numeric operations
   if (lhs.type == "number" && rhs.type == "number") {
     return eval_numeric_binary_expr(
       lhs as NumberVal,
@@ -857,9 +815,7 @@ function eval_binary_expr(binop: BinaryExpr, env: Environment): RuntimeVal {
       binop.operator,
     );
     }
-    
-
-  // One or both are NULL
+ 
   return MK_NULL();
 }
 
@@ -894,17 +850,15 @@ function eval_identifier(ident: Identifier, env: Environment): RuntimeVal {
 function eval_function(func: FunctionValue, args: RuntimeVal[]): RuntimeVal {
     const scope = new Environment(func.declarationEnv);
 
-    // Create the variables for the parameters list
     for (let i = 0; i < func.parameters.length; i++) {
-        // TODO check the bounds here
-        // verify arity of function
+  
         const varname = func.parameters[i];
         scope.declareVar(varname, args[i], false);
     }
 
     let result: RuntimeVal = MK_NULL();
 
-    // Evaluate the function body line by line
+   
     for (const stmt of func.body) {
         result = evaluate(stmt, scope);
     }
@@ -912,7 +866,7 @@ function eval_function(func: FunctionValue, args: RuntimeVal[]): RuntimeVal {
     return result;
 }
 
-export function eval_call_expr(expr: CallExpr, env: Environment): RuntimeVal {
+ function eval_call_expr(expr: CallExpr, env: Environment): RuntimeVal {
     const args = expr.args.map(arg => evaluate(arg, env));
     const fn = evaluate(expr.caller, env);
 
@@ -943,11 +897,11 @@ function eval_array_expr(obj: ArrayLiteral, env: Environment): RuntimeVal {
 }
 
 
-export function eval_function_declaration(
+ function eval_function_declaration(
 	declaration: FunctionDeclaration,
 	env: Environment
 ): RuntimeVal {
-	// Create new function scope
+	
 	const fret = {
 		type: "function",
 		name: declaration.name,
@@ -988,9 +942,8 @@ function eval_body(body: Stmt[], env: Environment, newEnv: boolean = true): Runt
     }
     let result: RuntimeVal = MK_NULL();
 
-    // Evaluate the if body line by line
     for (const stmt of body) {
-        // if((stmt as Identifier).symbol === 'continue') return result;
+     
         result = evaluate(stmt, scope);
     }
 
@@ -1020,7 +973,7 @@ function eval_val_declaration(declaration: VarDeclaration, env: Environment): Ru
     return env.declareVar(declaration.identifier, value, declaration.constant);
 }
 
-export function eval_for_statement(declaration: ForStatement, env: Environment): RuntimeVal {
+ function eval_for_statement(declaration: ForStatement, env: Environment): RuntimeVal {
     env = new Environment(env);
 
     eval_val_declaration(declaration.init, env);
@@ -1030,7 +983,7 @@ export function eval_for_statement(declaration: ForStatement, env: Environment):
 
     let test = evaluate(declaration.test, env);
 
-    if ((test as BooleanVal).value !== true) return MK_NULL(); // The loop didn't start
+    if ((test as BooleanVal).value !== true) return MK_NULL(); 
 
     do {
         eval_body(body, new Environment(env), false);
@@ -1079,10 +1032,10 @@ function eval_member_expr(env: Environment, node?: AssignmentExpr, expr?: Member
       return eval_call_expr(astNode as CallExpr, env);
     case "Program":
       return eval_program(astNode as Program, env);
-    // Handle statements
+   
     case "VarDeclaration":
       return eval_var_declaration(astNode as VarDeclaration, env);
-      // Handle unimplimented ast types as error.
+  
     case "AssignmentExpr":
       return eval_assignment(astNode as AssignmentExpr, env);
     case "FunctionDeclaration":
@@ -1106,12 +1059,11 @@ function eval_member_expr(env: Environment, node?: AssignmentExpr, expr?: Member
 
 function createGlobalEnv() {
 	const env = new Environment();
-	// Create Default Global Enviornment
+	
 	env.declareVar("true", MK_BOOL(true), true);
 	env.declareVar("false", MK_BOOL(false), true);
 	env.declareVar("null", MK_NULL(), true);
 
-	// Define a native builtin method
 	env.declareVar(
 		"strum",
 		MK_NATIVE_FN((args, scope) => {
@@ -1224,7 +1176,7 @@ class Environment {
             }
             case "array": {
 
-                // Will evaluate the expression. Numbers will stay, but a variable will work. This allows for array[0] and array[ident].
+            
                 const numRT: RuntimeVal = evaluate(expr.property, this);
 
                 if(numRT.type != "number") throw "Arrays do not have keys: " + expr.property;
@@ -1247,7 +1199,6 @@ class Environment {
 	public assignVar(varname: string, value: RuntimeVal): RuntimeVal {
 		const env = this.resolve(varname);
 
-		// Cannot assign to constant
 		if (env.constants.has(varname)) {
 			throw `Cannot reasign to variable ${varname} as it was declared constant.`;
 		}
@@ -1277,7 +1228,7 @@ class Environment {
 
 
 
-export function printValues(args: Array<RuntimeVal>) {
+ function printValues(args: Array<RuntimeVal>) {
     for (let i = 0; i < args.length; i++) {
         const arg = args[i];
 
@@ -1285,7 +1236,7 @@ export function printValues(args: Array<RuntimeVal>) {
     }
 }
 
-export function runtimeToJS(arg: RuntimeVal) {
+ function runtimeToJS(arg: RuntimeVal) {
     switch (arg.type) {
         case "string":
             return (arg as StringVal).value;
@@ -1309,7 +1260,7 @@ export function runtimeToJS(arg: RuntimeVal) {
         }
         case 'function': {
             const fn = arg as FunctionValue;
-            return fn.name == "<anonymous>" ? `[Function (anonymous)]` : `[Function: ${fn.name}]`; // definitely not stolen from javascript
+            return fn.name == "<anonymous>" ? `[Function (anonymous)]` : `[Function: ${fn.name}]`; 
         }
         case "native-fn": {
             return `[Native Function]`;
@@ -1319,7 +1270,7 @@ export function runtimeToJS(arg: RuntimeVal) {
     }
 }
 
-export function jsToRuntime(val: unknown): RuntimeVal {
+ function jsToRuntime(val: unknown): RuntimeVal {
     if(val == null) return MK_NULL();
 
     switch(typeof val) {
@@ -1408,9 +1359,8 @@ async function repl() {
         output: process.stdout
     });
 
-    console.log("Repl v1.0 (Bussin)");
+    console.log("Repl v0.1 (Fussion)");
 
-    // eslint-disable-next-line no-constant-condition
     while(true) {
         const input = await rl.question("> ");
 

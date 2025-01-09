@@ -1,17 +1,23 @@
 {
-  "name": "fusion",
-  "version": "1.0.0",
+  "name": "fusion-lang",
+  "version": "0.0.2",
+   "main": "dist/main.js",
   "scripts": {
-    "dev": "ts-node main.ts"
+    "dev": "ts-node src/main.ts"
   },
+   "bin": "dist/main.js",
   "keywords": [],
-  "author": "",
+  "author": "brunoblaise",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@types/node": "^22.10.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brunoblaise1/Fusion.git"
   },
   "dependencies": {
     "prompt-sync": "^4.2.0",
