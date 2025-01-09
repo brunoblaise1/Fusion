@@ -145,7 +145,7 @@ export default function Home() {
   <Link href="/guitar" className="p-2 ml-4 bg-gradient-to-b from-orange-300 to-orange-400  rounded-xl"
         >Digital Guitar</Link>    
 
- <Link href="/guitar" className="p-2 ml-4 bg-gradient-to-b from-green-300 to-green-400  rounded-xl "
+ <Link href="https://www.npmjs.com/package/fusion-lang" className="p-2 ml-4 bg-gradient-to-b from-green-300 to-green-400  rounded-xl "
 >Start coding</Link>   
         </div>        
       </div>
@@ -174,7 +174,7 @@ export default function Home() {
                 
               </code>
                 <code className="text-zinc-400"> 
-                  {`// This will play E note on fret 2`}
+                  {`// normalvariable `}
               </code>
               
               <code>
@@ -183,21 +183,21 @@ export default function Home() {
                          {
                     ` 
  play `
-                    }
-                    
+                      }
+                                   
                   </code>
                   <code className="text-purple-400">
-                    {`E`}
+                    {`n`}
                   </code>
                   <code className="text-yellow-200">
-                    {` 2`}
+                    {` = 2`}
                   </code>
                  
          </code>
 
                 <code className="text-zinc-400">
                   {`
-// Play a chord (major)`}
+// Boolean`}
                 </code>
 
                     <code>
@@ -208,16 +208,16 @@ export default function Home() {
                     }   
                   </code>
                   <code className="text-purple-400">
-                    {`E#`}
+                      {`isTrue`}n
                   </code>
                   <code className="text-yellow-200">
-                    {` 3`}
+                    {` = true`}
                   </code>
                 </code>
                 <code>
                 <code className="text-zinc-400">
                          {`
-// Play a chord (minor)`}
+// Print to the console`}
                   </code>    
                   <code className="text-orange-300">
                          {
@@ -227,10 +227,10 @@ export default function Home() {
                     
                   </code>
                   <code className="text-purple-400">
-                    {`Ab`}
+                    {`strum`}
                   </code>
                   <code className="text-yellow-200">
-                    {` 4`}
+                    {`(n)`}
                   </code>        
          </code>
               </code>
