@@ -1,7 +1,6 @@
 {
   "name": "fusion",
   "version": "1.0.0",
-  
   "scripts": {
     "dev": "ts-node main.ts"
   },
@@ -13,5 +12,9 @@
     "@types/node": "^22.10.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
+    "readline-sync": "^1.4.10"
   }
 }

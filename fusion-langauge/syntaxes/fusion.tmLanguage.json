@@ -11,13 +11,13 @@
 		"fu"
 	],
 	"patterns": [
-		{
-			"include": "#block-comments"
-		},
+		
 		{
 			"include": "#comments"
 		},
-		
+		{
+			"include": "#native-statement"
+		},
 		{
 			"include": "#keywords"
 		},
@@ -26,59 +26,248 @@
 		}
 	],
 	"repository": {
-		"comments": {
+		"comment": {
 			"patterns": [
 				{
-					"name": "comment.line.double-slash.fusion",
-					"match": "(//).*$",
-					"captures": {
-						"1": {
-							"name": "punctuation.definition.comment.fusion"
+					"name": "comment.block.fu",
+					"begin": "/\\*",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.fu"
+						}
+					},
+					"end": "\\*/",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.fu"
 						}
 					}
 				},
 				{
-					"include": "source.js#comments"
+					"begin": "(^\\s+)?(?=//)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.whitespace.comment.leading.fu"
+						}
+					},
+					"end": "(?=$)",
+					"patterns": [
+						{
+							"name": "comment.block.documentation.fu",
+							"begin": "(?<!/)///(?!/)",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.comment.fu"
+								}
+							},
+							"end": "(?=$)"
+						},
+						{
+							"name": "comment.line.double-slash.fu",
+							"begin": "(?<!/)//(?:(?!/)|(?=//))",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.comment.fu"
+								}
+							},
+							"end": "(?=$)"
+						}
+					]
 				}
-				
-				
 			]
 		},
-			"block-comments": {
+		"null-literal": {
+			"name": "constant.language.null.fu",
+			"match": "\\bnull\\b"
+		},
+			"boolean-literal": {
 			"patterns": [
 				{
-					"comment": "empty block comments",
-					"name": "comment.block.fusion",
-					"match": "/\\*\\*/"
+					"name": "constant.language.boolean.true.fu",
+					"match": "\\btrue\\b"
 				},
 				{
-					"comment": "block documentation comments",
-					"name": "comment.block.documentation.fusion",
-					"begin": "/\\*\\*",
-					"end": "\\*/",
-					"patterns": [
-						{
-							"include": "#block-comments"
-						}
-					]
+					"name": "constant.language.boolean.false.fu",
+					"match": "\\bfalse\\b"
+				}
+			]
+		},
+			"literal": {
+			"patterns": [
+				{
+					"include": "#boolean-literal"
 				},
 				{
-					"comment": "block comments",
-					"name": "comment.block.fusion",
-					"begin": "/\\*(?!\\*)",
-					"end": "\\*/",
-					"patterns": [
-						{
-							"include": "#block-comments"
-						}
-					]
+					"include": "#null-literal"
+				},
+				{
+					"include": "#char-literal"
+				},
+				{
+					"include": "#string"
+				}
+			]
+		},
+			"resource-expression": {
+			"begin": "\\b(resource)\\s*(<)\\s*(byte)\\s*(\\[)\\s*(\\])\\s*(>)\\s*(\\()",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.other.resource.fu"
+				},
+				"2": {
+					"name": "punctuation.definition.typeparameters.begin.fu"
+				},
+				"3": {
+					"name": "keyword.type.fu"
+				},
+				"4": {
+					"name": "punctuation.squarebracket.open.fu"
+				},
+				"5": {
+					"name": "punctuation.squarebracket.close.fu"
+				},
+				"6": {
+					"name": "punctuation.definition.typeparameters.end.fu"
+				},
+				"7": {
+					"name": "punctuation.parenthesis.open.fu"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.parenthesis.close.fu"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		},
+			"expression": {
+			"patterns": [
+				
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#resource-expression"
+				},
+				{
+					"include": "#expression-operators"
+				},
+				{
+					"include": "#literal"
+				}
+			]
+		},
+		"statement": {
+			"patterns": [
+				{
+					"include": "#native-statement"
+				},
+				{
+					"include": "#block"
+				},
+				
+				{
+					"include": "#initializer"
+				},
+				{
+					"include": "#expression"
+				}
+			]
+		},
+		"native-block": {
+			"begin": "\\{",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.curlybrace.open.fu"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.curlybrace.close.fu"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#literal"
+				},
+				{
+					"include": "#native-block"
+				}
+			]
+		},
+		"expression-operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.assignment.compound.fu",
+					"match": "[-+*/%]="
+				},
+				{
+					"name": "keyword.operator.assignment.compound.bitwise.fu",
+					"match": "[&|^]=|<<=|>>="
+				},
+				{
+					"name": "keyword.operator.bitwise.shift.fu",
+					"match": "<<|>>"
+				},
+				{
+					"name": "keyword.operator.comparison.fu",
+					"match": "==|!="
+				},
+				{
+					"name": "keyword.operator.relational.fu",
+					"match": "<=|>=|<|>"
+				},
+				{
+					"name": "keyword.operator.logical.fu",
+					"match": "\\!|&&|\\|\\|"
+				},
+				{
+					"name": "keyword.operator.bitwise.fu",
+					"match": "~|\\&|\\||\\^"
+				},
+				{
+					"name": "keyword.operator.assignment.fu",
+					"match": "\\="
+				},
+				{
+					"name": "keyword.operator.decrement.fu",
+					"match": "--"
+				},
+				{
+					"name": "keyword.operator.increment.fu",
+					"match": "\\+\\+"
+				},
+				{
+					"name": "keyword.operator.arithmetic.fu",
+					"match": "[-+*/%]"
+				},
+				{
+					"name": "keyword.operator.expression.pattern.is.fu",
+					"match": "\\bis\\b"
 				}
 			]
 		},
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.fusion",
-				"match": "\\b((p|P)lay|[A-Z].|strum)\\b"
+				"match": "\\b((p|P)lay|strum|press)\\b",
+				"patterns": [
+						{
+							"include": "#block-comments"
+						},
+						{
+							"include": "#comments"
+						}
+					]
 			}]
 		},
 		"strings": {
@@ -88,7 +277,15 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.fusion",
-					"match": "\\\\."
+					"match": "\\\\.",
+						"patterns": [
+						{
+							"include": "#block-comments"
+						},
+						{
+							"include": "#comments"
+						}
+					]
 				}
 			]
 		}

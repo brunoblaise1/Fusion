@@ -1,0 +1,35 @@
+// beginning of the program
+//TODO: make arrays, add more native functions, ifandelse
+
+play beg = "Hello World!" // not constant
+
+strum(beg)
+
+press gone = "Bye " // constant
+
+strum(gone)
+
+play n = 2 // variable
+play isTrue = true // boolean
+
+strum(n)
+
+press obj = {  // object in fussion
+    x: 3,
+    y: "Hello",
+    complex: {
+        go: true
+    },
+    n
+}
+
+strum(obj.complex.go)
+
+fret myname(str){ // function in fussion
+    strum(str)
+}
+play length = string("Blaise") // native function for length
+play time = now()
+myname("Blaise") // calling the function
+
+strum(time) // printing out to the console 
