@@ -3,7 +3,7 @@
   "displayName": "Fusion langauge",
   "description": "Fusion programming langauge ",
   "publisher": "brunoblaise",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -14,22 +14,31 @@
     "type": "git",
     "url": "https://github.com/brunoblaise1/Fusion.git"
   },
-   "icon": "/fusion.png",
+  "icon": "/fusion.png",
   "contributes": {
-    "languages": [{
-      "id": "fusion",
-      "aliases": ["Fusion", "fusion"],
-      "extensions": [".fu"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "fusion",
-      "scopeName": "source.fu",
-      "path": "./syntaxes/fusion.tmLanguage.json"
-    }],
-       "iconThemes": [
+    "languages": [
       {
-        "id": "fusion", 
+        "id": "fusion",
+        "aliases": [
+          "Fusion",
+          "fusion"
+        ],
+        "extensions": [
+          ".fu"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "fusion",
+        "scopeName": "source.fu",
+        "path": "./syntaxes/fusion.tmLanguage.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "fusion",
         "label": "Fusion Icon",
         "path": "icons.json"
       }
